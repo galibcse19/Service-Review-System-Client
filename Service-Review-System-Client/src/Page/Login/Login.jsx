@@ -18,7 +18,7 @@ const Login = () => {
         signIn(data.email,data.password)
         .then(result =>{
             const user = result.user;
-            toast.success('LogIn successfully done.',{position: "top-center"});
+            toast.success('Log in successful.',{position: "top-center"});
             navigate(from, {replace:true});
         })
         .catch((error) => {
@@ -31,7 +31,7 @@ const Login = () => {
         .then((result)=>{
             const user=result.user;
             console.log(user);
-            toast.success('LogIn successfully done.',{position: "top-center"});
+            toast.success('Log in successful.',{position: "top-center"});
             navigate(from, {replace:true});
         })
         .catch((error)=>{

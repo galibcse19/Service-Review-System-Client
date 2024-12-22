@@ -2,13 +2,13 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../Providers/AuthProviders';
+import { toast } from 'react-toastify';
  
 
 const Nav = () => {
   const {logOut,user} = useContext(AuthContext)
   const handleLogOut = () =>{
     logOut()
-    
     .then(()=>{
       toast.warn('Successfully LogOut.',{position: "top-center"});
     })

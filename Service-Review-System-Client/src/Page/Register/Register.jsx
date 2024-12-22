@@ -44,7 +44,7 @@ const Register = () => {
             .catch((error)=>{
                 setError(error.message);
             })
-            toast.success('Register successfully done.',{position: "top-center"});
+            toast.success('Register successful.',{position: "top-center"});
             navigate(from, {replace:true});
          })
          .catch((error) => {
@@ -57,7 +57,7 @@ const Register = () => {
         .then((result)=>{
             const user=result.user;
             console.log(user);
-            toast.success('Register successfully done.',{position: "top-center"});
+            toast.success('Account create successful.',{position: "top-center"});
             navigate(from, {replace:true});
         })
         .catch((error)=>{
