@@ -1,38 +1,42 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../Providers/AuthProviders';
+import { toast } from 'react-toastify';
 
 const Login = () => {
+    const {signInWithGoogle,signIn} = useContext(AuthContext);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [error,setError] = useState('');
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
     const location =useLocation();
     const from =location.state?.from?.pathname || "/";
+    
 
     const onSubmit  = data =>{
-        // signIn(data.email,data.password)
-        // .then(result =>{
-        //     const user = result.user;
-        //     toast.success('LogIn successfully done.',{position: "top-center"});
-        //     navigate(from, {replace:true});
-        // })
-        // .catch((error) => {
-        //     setError(error.message); 
-        //   });
+        signIn(data.email,data.password)
+        .then(result =>{
+            const user = result.user;
+            toast.success('LogIn successfully done.',{position: "top-center"});
+            navigate(from, {replace:true});
+        })
+        .catch((error) => {
+            setError(error.message); 
+          });
     } 
 
     const handelGoogleSignIn =()=>{
-        // signInWithGoogle()
-        // .then((result)=>{
-        //     const user=result.user;
-        //     console.log(user);
-        //     toast.success('LogIn successfully done.',{position: "top-center"});
-        //     navigate(from, {replace:true});
-        // })
-        // .catch((error)=>{
-        //     setError(error);
-        // })
+        signInWithGoogle()
+        .then((result)=>{
+            const user=result.user;
+            console.log(user);
+            toast.success('LogIn successfully done.',{position: "top-center"});
+            navigate(from, {replace:true});
+        })
+        .catch((error)=>{
+            setError(error);
+        })
     }
     return (
         <div>

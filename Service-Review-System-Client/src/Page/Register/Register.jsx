@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../Providers/AuthProviders';
+import { toast } from 'react-toastify';
 
 const Register = () => {
+    const {signInWithGoogle,createUser,updateUserProfile,setUser} = useContext(AuthContext);
     const [error,setError] = useState('');
     const navigate = useNavigate();
     const location =useLocation();
@@ -25,41 +28,41 @@ const Register = () => {
         }
         setError(''); 
 
-        // createUser(email,password)
-        //  .then(result =>{
-        //     const user = result.user;
-        //     setUser(user);
-        //     console.log(user);
-        //     updateUserProfile({displayName:name,photoURL:photo})
-        //     .then(()=>{
-        //         setUser((prevUser) => ({
-        //             ...prevUser,
-        //             displayName: name,
-        //             photoURL: photo
-        //           }));
-        //     })
-        //     .catch((error)=>{
-        //         setError(error.message);
-        //     })
-        //     toast.success('Register successfully done.',{position: "top-center"});
-        //     navigate(from, {replace:true});
-        //  })
-        //  .catch((error) => {
-        //     setError(error.message); 
-        //   });
+        createUser(email,password)
+         .then(result =>{
+            const user = result.user;
+            setUser(user);
+            console.log(user);
+            updateUserProfile({displayName:name,photoURL:photo})
+            .then(()=>{
+                setUser((prevUser) => ({
+                    ...prevUser,
+                    displayName: name,
+                    photoURL: photo
+                  }));
+            })
+            .catch((error)=>{
+                setError(error.message);
+            })
+            toast.success('Register successfully done.',{position: "top-center"});
+            navigate(from, {replace:true});
+         })
+         .catch((error) => {
+            setError(error.message); 
+          });
      
    };
     const handelGoogleSignIn =()=>{
-        // signInWithGoogle()
-        // .then((result)=>{
-        //     const user=result.user;
-        //     console.log(user);
-        //     toast.success('Register successfully done.',{position: "top-center"});
-        //     navigate(from, {replace:true});
-        // })
-        // .catch((error)=>{
-        //     setError(error);
-        // })
+        signInWithGoogle()
+        .then((result)=>{
+            const user=result.user;
+            console.log(user);
+            toast.success('Register successfully done.',{position: "top-center"});
+            navigate(from, {replace:true});
+        })
+        .catch((error)=>{
+            setError(error);
+        })
     }
     const validatePassword = (password) => {
         const hasUppercase = /[A-Z]/.test(password);
