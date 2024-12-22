@@ -1,32 +1,31 @@
  
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../Providers/AuthProviders';
  
 
 const Nav = () => {
-//   const {logOut,user} = useContext(AuthContext)
-//   const handleLogOut = () =>{
-//     logOut()
+  const {logOut,user} = useContext(AuthContext)
+  const handleLogOut = () =>{
+    logOut()
     
-//     .then(()=>{
-//       toast.warn('Successfully LogOut.',{position: "top-center"});
-//     })
-//     .catch(error =>console.log(error))
-// }
+    .then(()=>{
+      toast.warn('Successfully LogOut.',{position: "top-center"});
+    })
+    .catch(error =>console.log(error))
+}
     const links = <>
      <li><Link to={'/'}>Home</Link></li>
      <li><Link to={'/services'}>Service</Link></li>
-     <li><Link to={'/login'}>Log In</Link></li>
-     <li><Link to={'/register'}>Register</Link></li>
 
      
-     {/* {
+     {
         user ? <>
-          <li><Link to={'/addMovie'}>Add Movie</Link></li>
-          <li><Link to={'/myFavorites'}>My Favorites</Link></li>
+         <li><Link to={'/addService'}>Add Service</Link></li>
+         <li><Link to={'/myReviews'}>My Reviews</Link></li>
          <li>
-         <div className="relative group"> */}
-              {/* <Link to={'/userProfile'}> */}
-                {/* <div className="w-10 h-10 rounded-full overflow-hidden border border-gray-300">
+         <div className="relative group">
+                <div className="w-10 h-10 rounded-full overflow-hidden border border-gray-300">
                   {user && user?.email ? (
                     <img
                       src={user?.photoURL}
@@ -38,9 +37,8 @@ const Nav = () => {
                       ?
                     </div>
                   )}
-                </div> */}
-              {/* </Link> */}
-              {/* {user && (
+                </div>
+              {user && (
                 <span className="absolute left-1/2  top-12 bg-gray-800 text-white text-sm px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   {user.displayName}
                 </span>
@@ -49,10 +47,10 @@ const Nav = () => {
          </li>
          <button onClick={handleLogOut} className='btn btn-ghost'>LOGOUT</button>
         </> : <>
-        <li><Link to={'/logIn'}>Login</Link></li>
-        <li><Link to={'/signUp'}>Register</Link></li>
+        <li><Link to={'/login'}>Log In</Link></li>
+        <li><Link to={'/register'}>Register</Link></li>
         </>
-     } */}
+     }
     </>
     
     return (
