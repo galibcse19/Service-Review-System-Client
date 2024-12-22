@@ -86,6 +86,8 @@ const AddService = () => {
                                         <option>IT Support Services</option>
                                         <option>AI and Machine Learning</option>
                                         <option>IoT Solutions</option>
+                                        <option>Blockchain Technology</option>
+                                        <option>IT Consulting</option>
                                     </select>
                             </label>
                             <label className="form-control w-full">
@@ -100,7 +102,7 @@ const AddService = () => {
                                 </div>
                                 <button
                                 type="submit"
-                                className="font-bold p-3 bg-green-900 text-white rounded-md hover:bg-red-500 transition duration-200 lg:w-[90%]"
+                                className="font-bold p-3 bg-green-600 text-white rounded-md hover:bg-red-500 transition duration-200 lg:w-[90%]"
                                 >
                                 Add Service
                                </button>
