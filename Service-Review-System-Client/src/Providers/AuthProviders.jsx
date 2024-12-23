@@ -12,12 +12,22 @@ const AuthProviders = ({children}) => {
     const [loading, setLoading] = useState(true);
 
     const [serviceData, setServiceData] = useState([]);
+    const [reviewData, setReviewData] = useState([]);
+    //load service data
     useEffect(()=>{
         fetch('http://localhost:5000/services')
         .then(res => res.json())
         .then(data => setServiceData(data))
     },[])
-    // console.log(serviceData);
+    // load review data
+    useEffect(()=>{
+        fetch('http://localhost:5000/reviews')
+        .then(res => res.json())
+        .then(data => setReviewData(data))
+    },[])
+    // console.log(reviewData);
+
+    
 
     const createUser = (email,password)=>{
         setLoading(true);
@@ -54,7 +64,7 @@ const AuthProviders = ({children}) => {
     }
 
     const authInfo ={
-         user,loading,signInWithGoogle,createUser,signIn,updateUserProfile,logOut,setUser,serviceData
+         user,loading,signInWithGoogle,createUser,signIn,updateUserProfile,logOut,setUser,serviceData,reviewData
     }
     return (
         <AuthContext.Provider value={authInfo}>

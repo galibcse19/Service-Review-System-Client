@@ -1,24 +1,33 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Rating } from '@smastrom/react-rating'
 
 import '@smastrom/react-rating/style.css'
 import { AuthContext } from '../../Providers/AuthProviders';
 import { toast } from 'react-toastify';
+import ShowReview from './ShowReview';
 
 const ServiceDetails = () => {
-    const { loading,user } = useContext(AuthContext);
+    const { loading,user,reviewData } = useContext(AuthContext);
     const location = useLocation(); 
     const {error, setError} = useState('');
     const [rating, setRating] = useState(3);
     const [reviewText, setReviewText] = useState('');
     const { data } = location.state;
     const {serviceTitle,companyName,website,description,price,date,category,photo,_id} =data;
-    // console.log(data);
     const reviewDate = new Date().toLocaleDateString(); 
     const userEmail = user.email;
     const userPhotoURL = user.photoURL;
     const userName = user.displayName;
+    const reviwCategory = category;
+
+ 
+
+    // console.log(reviewData);
+    // console.log(reviewData.reviwCategory);
+
+    const thisServiceReview = reviewData.filter(thisReview => thisReview.reviwCategory === category);
+    // console.log(thisServiceReview)
 
     const handleReview =()=>{
         if (!reviewText || rating === 0) {
@@ -26,7 +35,7 @@ const ServiceDetails = () => {
             return;
           }
         //  console.log(rating,reviewText,reviewDate,userName,userEmail,userPhotoURL)  
-         const reviewData ={rating,reviewText,reviewDate,userName,userEmail,userPhotoURL,category}
+         const reviewData ={rating,reviewText,reviewDate,userName,userEmail,userPhotoURL,reviwCategory}
         //  console.log(reviewData)
         fetch('http://localhost:5000/reviews',{
                     method: 'POST',
@@ -80,7 +89,7 @@ const ServiceDetails = () => {
                         </div>
                         <div>
                             <p className="text-sm text-gray-500 mt-4">
-                                <strong>Review Date:</strong> {new Date().toLocaleDateString()}
+                                <strong>Today Date:</strong> {new Date().toLocaleDateString()}
                             </p>
                         </div>
                     </div>
@@ -90,8 +99,18 @@ const ServiceDetails = () => {
                     Add Review
                </button>
                 </div>
+                {error && <p className="text-red-500 text-center mt-4">{error}</p>}
             </div>
-            {error}
+            <div className='p-6'>
+                <div className='card glass lg:w-2/3 md:w-3/4 w-full mx-auto p-6'>
+                    <h3 className='font-bold text-xl'>Total Review: {thisServiceReview.length}</h3>
+                    
+                    {
+                    thisServiceReview.map(data =><ShowReview data={data} key={data._id}></ShowReview>)
+                    }
+                </div>
+            </div>
+            
         </div>
     );
 };
