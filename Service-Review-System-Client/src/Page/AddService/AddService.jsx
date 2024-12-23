@@ -1,20 +1,44 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../Providers/AuthProviders';
+import { toast } from 'react-toastify';
 
 const AddService = () => {
     const {user} = useContext(AuthContext);
     const [currentDate] = useState(new Date().toLocaleDateString());
+    const {error, setError} = useState('');
+
     const handleSubmit =(event)=>{
         event.preventDefault();
         const form = event.target;
-        const title = form.title.value;
+        const serviceTitle = form.serviceTitle.value;
         const email = form.email.value;
-        const dutation = form.dutation.value;
-        const summary = form.summary.value;
-        const rating = form.rating.value;
-        const genre = form.genre.value;
-        const releasedYear = form.releasedYear.value;
+        const companyName = form.companyName.value;
+        const website = form.website.value;
+        const description = form.description.value;
+        const price = form.price.value;
+        const date = form.date.value;
+        const category = form.category.value;
         const photo = form.photo.value;
+
+        const serviceData ={serviceTitle,email,companyName,website,description,price,date,category,photo};
+        console.log(serviceData)
+        fetch('http://localhost:5000/services',{
+            method: 'POST',
+            headers:{
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(serviceData)
+        })
+        .then(res => res.json())
+        .then(data =>{
+            if(data.insertedId){
+                toast.success('Data submit sucessfully',{position: "top-center"});
+            }
+        })
+        // .catch(error => console.log(error.message));
+        .catch(error =>{
+            setError(error.message)
+        });
     }
         
     return (
@@ -27,31 +51,31 @@ const AddService = () => {
                 </div>
                 <form  onSubmit={handleSubmit} className="grid lg:grid-cols-2 grid-cols-1 mt-6 text-black backdrop-blur-md bg-white bg-opacity-30 border border-white border-opacity-30 rounded-lg p-6 lg:w-2/3 md:w-2/3 w-full mx-auto shadow-lg text-center">
                     <div>
-                           <label className="form-control w-full">
+                           <label className="form-control w-full text-white">
                                 <div className="label">
                                     <span className="label-text text-white">Service Title:</span>
                                 </div>
-                                <input required name="title" type="text" placeholder="Enter Service Title" className="input input-bordered lg:w-[90%] w-full"/>
+                                <input required name="serviceTitle" type="text" placeholder="Enter Service Title" className="input input-bordered lg:w-[90%] w-full"/>
                             </label>
-                            <label className="form-control w-full">
+                            <label className="form-control w-full text-white">
                                 <div className="label">
                                     <span className="label-text text-white">Email:</span>
                                 </div>
-                                <input required type="email" name="email"  defaultValue={user.email} disabled  className="input input-bordered lg:w-[90%] w-full" />
+                                <input required type="email" name="email"  value={user.email} disabled  className="input input-bordered lg:w-[90%] w-full" />
                             </label>
-                            <label className="form-control w-full">
+                            <label className="form-control w-full text-white">
                                 <div className="label">
                                     <span className="label-text text-white">Company Name:</span>
                                 </div>
-                                <input required type="text" name="name"   placeholder="Enter Company Name"  className="input input-bordered lg:w-[90%] w-full" />
+                                <input required type="text" name="companyName"   placeholder="Enter Company Name"  className="input input-bordered lg:w-[90%] w-full" />
                             </label>
-                            <label className="form-control w-full">
+                            <label className="form-control w-full text-white">
                                 <div className="label">
                                     <span className="label-text text-white">Website:</span>
                                 </div>
                                 <input required name="website" type="text"   placeholder="Enter Website Link"  className="input input-bordered lg:w-[90%] w-full" />
                             </label>
-                            <label className="form-control w-full">
+                            <label className="form-control w-full text-white">
                                 <div className="label">
                                     <span className="label-text text-white">Description:</span>
                                 </div>
@@ -59,25 +83,24 @@ const AddService = () => {
                             </label>
                     </div>
                     <div>
-                            <label className="form-control w-full">
+                            <label className="form-control w-full text-white">
                                 <div className="label">
                                     <span className="label-text text-white">Price:</span>
                                 </div>
                                 <input required name="price" type="text"   placeholder="Enter Service Price"  className="input input-bordered lg:w-[90%] w-full" />
                             </label>
-                            <label className="form-control w-full">
+                            <label className="form-control w-full text-white">
                                 <div className="label">
                                     <span className="label-text text-white">Date:</span>
                                 </div>
-                                {/* <p>{currentDate}</p> */}
-                                <input required name="price" disabled  placeholder={currentDate}  className="input input-bordered lg:w-[90%] w-full" />
+                                <input required name="date" disabled  value={currentDate}  className="input input-bordered lg:w-[90%] w-full" />
                             </label>
                              
-                            <label className="form-control w-full">
+                            <label className="form-control w-full text-white">
                                     <div className="label">
                                         <span className="label-text text-white">Category</span>
                                     </div>
-                                    <select name="genre" required className="select select-bordered lg:w-[90%] w-full">
+                                    <select name="category" required className="select select-bordered lg:w-[90%] w-full">
                                         <option>Network Management</option>
                                         <option>Cybersecurity</option>
                                         <option>Cloud Computing</option>
@@ -90,13 +113,13 @@ const AddService = () => {
                                         <option>IT Consulting</option>
                                     </select>
                             </label>
-                            <label className="form-control w-full">
+                            <label className="form-control w-full text-white">
                                 <div className="label">
                                     <span className="label-text text-white">Service Image URL:</span>
                                 </div>
                                 <input required name="photo" type="text"   placeholder="Enter Poster PhotoURL"  className="input input-bordered lg:w-[90%] w-full" />
                             </label>
-                            <label className="form-control w-full">
+                            <label className="form-control w-full text-white">
                                 <div className="label">
                                     <span className="label-text text-white">Now Submit</span>
                                 </div>
@@ -111,7 +134,7 @@ const AddService = () => {
                     </div>
                     
                 </form>
-                {/* {error} */}
+                {error}
             </div>
         </div>
     );

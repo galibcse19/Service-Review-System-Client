@@ -11,6 +11,14 @@ const AuthProviders = ({children}) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    const [serviceData, setServiceData] = useState([]);
+    useEffect(()=>{
+        fetch('http://localhost:5000/services')
+        .then(res => res.json())
+        .then(data => setServiceData(data))
+    },[])
+    // console.log(serviceData);
+
     const createUser = (email,password)=>{
         setLoading(true);
         return createUserWithEmailAndPassword(auth,email,password)
@@ -46,7 +54,7 @@ const AuthProviders = ({children}) => {
     }
 
     const authInfo ={
-         user,loading,signInWithGoogle,createUser,signIn,updateUserProfile,logOut,setUser
+         user,loading,signInWithGoogle,createUser,signIn,updateUserProfile,logOut,setUser,serviceData
     }
     return (
         <AuthContext.Provider value={authInfo}>
