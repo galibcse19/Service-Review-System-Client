@@ -32,7 +32,7 @@ const AddService = () => {
         .then(res => res.json())
         .then(data =>{
             if(data.insertedId){
-                toast.success('Data submit sucessfully',{position: "top-center"});
+                toast.success('Service data submit sucessfully',{position: "top-center"});
             }
         })
         // .catch(error => console.log(error.message));
@@ -96,7 +96,7 @@ const AddService = () => {
                                 <input required name="date" disabled  value={currentDate}  className="input input-bordered lg:w-[90%] w-full" />
                             </label>
                              
-                            <label className="form-control w-full text-white">
+                            <label className="form-control w-full">
                                     <div className="label">
                                         <span className="label-text text-white">Category</span>
                                     </div>

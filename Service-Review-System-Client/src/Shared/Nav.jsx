@@ -22,6 +22,7 @@ const Nav = () => {
      {
         user ? <>
          <li><Link to={'/addService'}>Add Service</Link></li>
+         <li><Link to={'/myServices'}>My Services</Link></li>
          <li><Link to={'/myReviews'}>My Reviews</Link></li>
          <li>
          <div className="relative group">
