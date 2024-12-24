@@ -8,7 +8,7 @@ const MyReviews = () => {
     // console.log(thisUserReview)
     return (
         <div className='p-6'>
-            <h2 className="text-2xl text-center font-bold my-4">My Services</h2>
+            <h2 className="text-2xl text-center font-bold my-4">My Review</h2>
             <div className='card glass lg:w-2/3 md:w-3/4 w-full mx-auto  p-2'>
              {
                 thisUserReview.map(review=><MyReview review={review} key={review._id}></MyReview>)
