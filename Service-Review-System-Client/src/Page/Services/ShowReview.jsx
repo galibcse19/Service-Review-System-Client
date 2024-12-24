@@ -4,7 +4,7 @@ import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
 
 const ShowReview = ({data}) => {
-    console.log(data);
+    // console.log(data);
     return (
         <div>
             <div className='grid lg:grid-cols-3 grid-cols-1'>
