@@ -51,31 +51,31 @@ const AddService = () => {
                 </div>
                 <form  onSubmit={handleSubmit} className="grid lg:grid-cols-2 grid-cols-1 mt-6 text-black backdrop-blur-md bg-white bg-opacity-30 border border-white border-opacity-30 rounded-lg p-6 lg:w-2/3 md:w-2/3 w-full mx-auto shadow-lg text-center">
                     <div>
-                           <label className="form-control w-full text-white">
+                           <label className="form-control w-full">
                                 <div className="label">
                                     <span className="label-text text-white">Service Title:</span>
                                 </div>
                                 <input required name="serviceTitle" type="text" placeholder="Enter Service Title" className="input input-bordered lg:w-[90%] w-full"/>
                             </label>
-                            <label className="form-control w-full text-white">
+                            <label className="form-control w-full">
                                 <div className="label">
                                     <span className="label-text text-white">Email:</span>
                                 </div>
                                 <input required type="email" name="email"  value={user.email} disabled  className="input input-bordered lg:w-[90%] w-full" />
                             </label>
-                            <label className="form-control w-full text-white">
+                            <label className="form-control w-full">
                                 <div className="label">
                                     <span className="label-text text-white">Company Name:</span>
                                 </div>
                                 <input required type="text" name="companyName"   placeholder="Enter Company Name"  className="input input-bordered lg:w-[90%] w-full" />
                             </label>
-                            <label className="form-control w-full text-white">
+                            <label className="form-control w-full">
                                 <div className="label">
                                     <span className="label-text text-white">Website:</span>
                                 </div>
                                 <input required name="website" type="text"   placeholder="Enter Website Link"  className="input input-bordered lg:w-[90%] w-full" />
                             </label>
-                            <label className="form-control w-full text-white">
+                            <label className="form-control w-full ">
                                 <div className="label">
                                     <span className="label-text text-white">Description:</span>
                                 </div>
@@ -83,13 +83,13 @@ const AddService = () => {
                             </label>
                     </div>
                     <div>
-                            <label className="form-control w-full text-white">
+                            <label className="form-control w-full">
                                 <div className="label">
                                     <span className="label-text text-white">Price:</span>
                                 </div>
                                 <input required name="price" type="text"   placeholder="Enter Service Price"  className="input input-bordered lg:w-[90%] w-full" />
                             </label>
-                            <label className="form-control w-full text-white">
+                            <label className="form-control w-full">
                                 <div className="label">
                                     <span className="label-text text-white">Date:</span>
                                 </div>
@@ -113,7 +113,7 @@ const AddService = () => {
                                         <option>IT Consulting</option>
                                     </select>
                             </label>
-                            <label className="form-control w-full text-white">
+                            <label className="form-control w-full">
                                 <div className="label">
                                     <span className="label-text text-white">Service Image URL:</span>
                                 </div>

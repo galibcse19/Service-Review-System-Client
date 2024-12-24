@@ -1,4 +1,7 @@
 import React from 'react';
+import { Rating } from '@smastrom/react-rating'
+
+import '@smastrom/react-rating/style.css'
 
 const ShowReview = ({data}) => {
     console.log(data);
@@ -20,7 +23,11 @@ const ShowReview = ({data}) => {
                 Review Text: {data.reviewText}
                 </div>
                 <div className='lg:my-4'>
-                Rating: {data.rating}
+                 <Rating
+                          style={{ maxWidth: 140 }}
+                          value={data.rating}
+                          readOnly
+                        /> 
                 </div>
               </div>
               <div className='my-4  lg:px-6'>

@@ -7,8 +7,12 @@ const PrivateRoutes = ({children}) => {
     if(user){
         return children;
     }
-    if(!user){
-        return loading;
+    if (loading) {
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <span className="loading loading-spinner text-info"></span>
+            </div>
+        );
     }
     return <Navigate to="/login"></Navigate>
 };
