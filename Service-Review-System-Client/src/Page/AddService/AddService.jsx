@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../Providers/AuthProviders';
 import { toast } from 'react-toastify';
+import DynamicTitle from '../../Shared/DynamicTitle';
 
 const AddService = () => {
     const {user} = useContext(AuthContext);
@@ -47,7 +48,7 @@ const AddService = () => {
             <div className="absolute inset-0 bg-green-600" />
                 {/* Upper Section with Glassmorphism */}
                 <div className="backdrop-blur-md bg-white bg-opacity-30 border border-white border-opacity-30 rounded-lg p-4 w-full shadow-lg text-center">
-                    <h1 className="text-xl md:text-2xl font-bold text-white">Here - Add Service</h1>
+                <DynamicTitle heading={"Add Services"}></DynamicTitle>
                 </div>
                 <form  onSubmit={handleSubmit} className="grid lg:grid-cols-2 grid-cols-1 mt-6 text-black backdrop-blur-md bg-white bg-opacity-30 border border-white border-opacity-30 rounded-lg p-6 lg:w-2/3 md:w-2/3 w-full mx-auto shadow-lg text-center">
                     <div>

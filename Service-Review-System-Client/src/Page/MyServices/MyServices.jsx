@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../Providers/AuthProviders';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
+import DynamicTitle from '../../Shared/DynamicTitle';
 
 const MyServices = () => {
     const {user,serviceData} = useContext(AuthContext);
@@ -105,8 +106,8 @@ const MyServices = () => {
 
     return (
         <div className="p-6">
-            <h2 className="text-2xl text-center font-bold my-4">My Services</h2>
-            <div className="mb-4 text-center">
+            <DynamicTitle heading={"My Services"}></DynamicTitle>
+            <div className="my-4 text-center">
                 <input
                     type="text"
                     placeholder="Search services..."
