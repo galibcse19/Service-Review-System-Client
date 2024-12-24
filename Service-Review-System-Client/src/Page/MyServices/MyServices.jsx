@@ -15,7 +15,7 @@ const MyServices = () => {
     const [specficData, setSpecificdata]= useState('');
     const {error, setError} = useState('');
     const [currentDate] = useState(new Date().toLocaleDateString());
-    console.log(filteredData) 
+    // console.log(filteredData) 
 
     const handleSearch = (e) => {
         const query = e.target.value.toLowerCase();
