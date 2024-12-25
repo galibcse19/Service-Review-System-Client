@@ -12,13 +12,13 @@ const PrivateRoutes = ({children}) => {
             <div className="flex justify-center items-center h-screen">
                 <span className="loading loading-spinner text-info my-4"></span> 
                 <div>
-                <Link to={'/login'}>
+                {/* <Link to={'/login'}>
                  <button
                     className="font-bold p-3 bg-green-600 text-white rounded-md hover:bg-red-500 transition duration-200 lg:w-[90%]"
                     >
                      Log in First
                 </button>
-                 </Link>
+                 </Link> */}
                 </div>
             </div>
         );
