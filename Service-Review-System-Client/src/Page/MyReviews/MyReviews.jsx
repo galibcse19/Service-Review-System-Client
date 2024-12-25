@@ -84,7 +84,7 @@ const MyReviews = () => {
         }
     return (
         <div className='p-6'>
-            <DynamicTitle heading={"Featured Services"}></DynamicTitle>
+            <DynamicTitle heading={"My Reviews"}></DynamicTitle>
             <div className='card glass lg:w-2/3 md:w-3/4 w-full mx-auto my-4  p-2'>
               
              {
@@ -112,6 +112,9 @@ const MyReviews = () => {
                             </div>
                 ))
              }
+             {
+                thisUserReview.length === 0 && (<p className="text-center text-gray-500 mt-4">No reviews found.</p>)
+            }
             </div>
             {isModalOpen && (
                            <div className="fixed inset-0 flex items-center justify-center z-50">
