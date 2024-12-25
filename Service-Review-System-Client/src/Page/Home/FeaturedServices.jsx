@@ -5,7 +5,7 @@ import Service from '../Services/Service';
 
 const FeaturedServices = () => {
     const {serviceDataLimit,loading} = useContext(AuthContext);
-    console.log(serviceDataLimit)
+    // console.log(serviceDataLimit)
     return (
         <div>
             <DynamicTitle heading={"Featured Services"}></DynamicTitle>

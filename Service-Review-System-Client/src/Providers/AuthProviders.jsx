@@ -10,6 +10,7 @@ const AuthProviders = ({children}) => {
     const googleProvider = new GoogleAuthProvider();
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [countUser,setCountUser] = useState(4);
 
     const [serviceData, setServiceData] = useState([]);
     const [serviceDataLimit, setServiceDataLimit] = useState([]);
@@ -39,7 +40,9 @@ const AuthProviders = ({children}) => {
 
     const createUser = (email,password)=>{
         setLoading(true);
+        setCountUser(prevCount => prevCount + 1);
         return createUserWithEmailAndPassword(auth,email,password)
+        
     }
 
     const signIn = (email,password)=>{
@@ -72,7 +75,7 @@ const AuthProviders = ({children}) => {
     }
 
     const authInfo ={
-         user,loading,signInWithGoogle,createUser,signIn,updateUserProfile,logOut,setUser,serviceData,reviewData,serviceDataLimit
+         user,countUser,loading,signInWithGoogle,createUser,signIn,updateUserProfile,logOut,setUser,serviceData,reviewData,serviceDataLimit
     }
     return (
         <AuthContext.Provider value={authInfo}>
