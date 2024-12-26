@@ -6,27 +6,31 @@ import DynamicTitle from '../../Shared/DynamicTitle';
 
 const MyServices = () => {
     const {user,serviceData} = useContext(AuthContext);
-    // console.log(serviceData)
- 
     const thisUserService = serviceData.filter(thisUser => thisUser.email === user.email);
-
+    // console.log(thisUserService)
+    // console.log(serviceData)
     const [searchQuery, setSearchQuery] = useState(''); 
-    const [filteredData, setFilteredData] = useState(thisUserService || []);
+    
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [specficData, setSpecificdata]= useState('');
     const {error, setError} = useState('');
+    
+
+    const [filteredData, setFilteredData] = useState(thisUserService || []);
+    
     const [currentDate] = useState(new Date().toLocaleDateString());
     // console.log(filteredData) 
 
     const handleSearch = (e) => {
         const query = e.target.value.toLowerCase();
         setSearchQuery(query);
-
-        const filtered = thisUserService.filter((service) =>
-            service.serviceTitle.toLowerCase().includes(query)
-        );
+        const filtered = thisUserService.filter((service) =>{
+            return service.serviceTitle.toLowerCase().includes(query);
+        });
+         
         setFilteredData(filtered);
     };
+    
 
     const handleDelete = (_id) => {
         Swal.fire({
@@ -39,7 +43,7 @@ const MyServices = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/services/${_id}`, {
+                fetch(`https://service-review-system-server-gray.vercel.app/services/${_id}`, {
                     method: 'DELETE',
                 })
                     .then(res => res.json())
@@ -86,7 +90,7 @@ const MyServices = () => {
 
         const serviceData ={serviceTitle,email,companyName,website,description,price,date,category,photo};
         console.log(serviceData)
-        fetch(`http://localhost:5000/services/${specficData._id}`, {
+        fetch(`https://service-review-system-server-gray.vercel.app/services/${specficData._id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -147,7 +151,7 @@ const MyServices = () => {
                 </table>
             </div>
             {
-                thisUserService.length === 0 && (<p className="text-center text-gray-500 mt-4">No services found.</p>)
+                filteredData.length === 0 && (<p className="text-center text-gray-500 mt-4">No services found.</p>)
             }
             </div>
             {isModalOpen && (
@@ -235,7 +239,7 @@ const MyServices = () => {
                                 type="submit"
                                 className="font-bold p-3 bg-green-600 text-white rounded-md hover:bg-red-500 transition duration-200 lg:w-[90%]"
                                 >
-                                Add Service
+                                Update Service
                                </button>
                            </label>
                             

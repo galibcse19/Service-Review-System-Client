@@ -23,7 +23,7 @@ const AddService = () => {
 
         const serviceData ={serviceTitle,email,companyName,website,description,price,date,category,photo};
         console.log(serviceData)
-        fetch('http://localhost:5000/services',{
+        fetch('https://service-review-system-server-gray.vercel.app/services',{
             method: 'POST',
             headers:{
                 'content-type': 'application/json'

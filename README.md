@@ -1,6 +1,6 @@
 ## Project Name : Service Review System  (Client Side)
 
-## Live Link: 
+## Live Link: https://service-review-6a808.web.app/
 
 ## Purpose:
 This project is designed to manage services offered by a company. Users can view, add, update, and delete services. The system allows for seamless CRUD (Create, Read, Update, Delete) operations, making it easy to maintain an up-to-date list of services.
@@ -10,7 +10,7 @@ This project is designed to manage services offered by a company. Users can view
    - Real-time Data Fetching: Data is fetched and updated automatically using TanStack Query (React Query).
    - Authentication: Implemented session-based authentication to protect certain operations (e.g., adding, updating, deleting services).
    - Error Handling: Display appropriate messages when data is loading or if an error occurs during fetching.
-   
+
 ## npm Packages Used:
    - react: The core library for building the UI.
    - react-dom: The package used to render React components.

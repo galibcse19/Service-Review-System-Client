@@ -37,7 +37,7 @@ const ServiceDetails = () => {
         //  console.log(rating,reviewText,reviewDate,userName,userEmail,userPhotoURL)  
          const reviewData ={rating,reviewText,reviewDate,userName,userEmail,userPhotoURL,reviwCategory}
         //  console.log(reviewData)
-        fetch('http://localhost:5000/reviews',{
+        fetch('https://service-review-system-server-gray.vercel.app/reviews',{
                     method: 'POST',
                     headers:{
                         'content-type': 'application/json'

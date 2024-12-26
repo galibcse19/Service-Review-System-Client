@@ -18,10 +18,10 @@ const AuthProviders = ({children}) => {
     const [reviewData, setReviewData] = useState([]);
     //load service data
     useEffect(()=>{
-        // fetch('http://localhost:5000/services')
+        // fetch('https://service-review-system-server-gray.vercel.app/services')
         // .then(res => res.json())
         // .then(data => setServiceData(data))
-        axios.get('http://localhost:5000/services',{
+        axios.get('https://service-review-system-server-gray.vercel.app/services',{
             withCredentials: true
         })
              .then(res => setServiceData(res.data))
@@ -29,20 +29,20 @@ const AuthProviders = ({children}) => {
 
     //load service data using Limit
     useEffect(()=>{
-        // fetch('http://localhost:5000/servicesData')
+        // fetch('https://service-review-system-server-gray.vercel.app/servicesData')
         // .then(res => res.json())
         // .then(data => setServiceDataLimit(data))
-        axios.get('http://localhost:5000/servicesData',{
+        axios.get('https://service-review-system-server-gray.vercel.app/servicesData',{
             withCredentials: true
         })
              .then(res => setServiceDataLimit(res.data))
     },[])
     // load review data
     useEffect(()=>{
-        // fetch('http://localhost:5000/reviews')
+        // fetch('https://service-review-system-server-gray.vercel.app/reviews')
         // .then(res => res.json())
         // .then(data => setReviewData(data))
-        axios.get('http://localhost:5000/reviews',{
+        axios.get('https://service-review-system-server-gray.vercel.app/reviews',{
             withCredentials: true
         })
              .then(res => setReviewData(res.data))
@@ -74,7 +74,7 @@ const AuthProviders = ({children}) => {
              if(currentUser?.email){
                 const user = {email: currentUser.email}
 
-                axios.post('http://localhost:5000/jwt',user,{
+                axios.post('https://service-review-system-server-gray.vercel.app/jwt',user,{
                     withCredentials: true })
                      .then(res => {
                         console.log('login token', res.data);
@@ -82,7 +82,7 @@ const AuthProviders = ({children}) => {
                      })
              }
              else{
-                axios.post('http://localhost:5000/logout',{},{
+                axios.post('https://service-review-system-server-gray.vercel.app/logout',{},{
                     withCredentials: true
                 })
                 .then(res =>{

@@ -27,7 +27,7 @@ const MyReviews = () => {
                          confirmButtonText: "Yes, delete it!"
                      }).then((result) => {
                          if (result.isConfirmed) {
-                             fetch(`http://localhost:5000/reviews/${_id}`, {
+                             fetch(`https://service-review-system-server-gray.vercel.app/reviews/${_id}`, {
                                  method: 'DELETE',
                              })
                                  .then(res => res.json())
@@ -68,7 +68,7 @@ const MyReviews = () => {
             const reviwCategory = specficData.reviwCategory;
             const reviewData ={rating,reviewText,reviewDate,userName,userEmail,userPhotoURL,reviwCategory}
             // console.log(reviewData);
-            fetch(`http://localhost:5000/reviews/${specficData._id}`, {
+            fetch(`https://service-review-system-server-gray.vercel.app/reviews/${specficData._id}`, {
                                 method: 'PUT',
                                 headers: {
                                     'Content-Type': 'application/json',
