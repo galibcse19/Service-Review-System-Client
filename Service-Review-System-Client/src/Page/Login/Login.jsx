@@ -1,8 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProviders';
 import { toast } from 'react-toastify';
+import Lottie from 'lottie-react';
+import animation from '../../assets/lotto2.json'
 
 const Login = () => {
     const {signInWithGoogle,signIn} = useContext(AuthContext);
@@ -39,29 +41,23 @@ const Login = () => {
         })
     }
     return (
-        <div>
-            <div className="relative bg-cover bg-center py-10">
-        <div className="absolute inset-0 bg-gradient-to-r from-green-600 to-green-600 bg-opacity-50" />
-
-            {/* Upper Section with Glassmorphism */}
-            <div className="flex flex-col items-center justify-center px-4">
-                {/* Welcome Section */}
-                <div className="backdrop-blur-md bg-white bg-opacity-30 border border-white border-opacity-30 rounded-lg p-6 m-4 w-full max-w-md shadow-lg text-center">
-                <h1 className="text-xl md:text-3xl lg:text-3xl font-bold text-white">WELCOME TO SERVICE REVIEW</h1>
+        <div className='grid lg:grid-cols-2 grid-cols-1 lg:px-20 md:px-16 px-2 bg-green-500'>
+                <div className='w-2/3 py-10   mx-auto my-auto'>
+                <Lottie className='rounderd-full' animationData={animation}></Lottie>
                 </div>
-
-                {/* Login Form Section */}
-                <div className="backdrop-blur-md bg-white bg-opacity-30 border border-white border-opacity-30 rounded-lg lg:p-8 md:p-6 p-4 m-4 w-full max-w-md shadow-lg">
-                <h2 className="text-xl md:text-2xl font-bold mb-6 text-center text-white">LOG IN</h2>
+                <div className='p-6 my-10 bg-green-600 rounded-xl'>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="mb-4">
                     <label className="block text-sm font-medium text-white" htmlFor="email">Email</label>
                     <input
                         type="email"
                         name="email"
+                        placeholder='Enter your Email'
                         {...register("email",{ required: true })}
+                        onChange={(e) => setEmail(e.target.value)}
                         className="mt-1 lg:p-4 md:p-4 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500 bg-transparent text-white"
                         required
+                        // onChange={(e) => setEmail(e.target.value)}
                     />
                     </div>
                     <div className="mb-4">
@@ -69,15 +65,19 @@ const Login = () => {
                     <input
                         type="password"
                         name="password"
+                        placeholder='Enter your Password'
                         {...register("password",{ required: true })}
                         className="mt-1 lg:p-4 md:p-4 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500 bg-transparent text-white"
                         required
                     />
+                    {/* <p className="text-white my-2">
+                        <Link onClick={handleForgetPassword}>Forget Password ?</Link>
+                    </p> */}
                     {message && <p className="text-center text-red-600 text-sm mt-4">{message}</p>}
                     </div>
                     <button
                     type="submit"
-                    className="w-full font-bold lg:p-4 md:p-4 p-2 bg-green-600 text-white rounded-md hover:bg-red-500 transition duration-200"
+                    className="w-full font-bold lg:p-4 md:p-4 p-2 bg-gray-800 text-white rounded-md hover:bg-blue-300 transition duration-200"
                     >
                     LOG IN
                     </button>
@@ -88,12 +88,12 @@ const Login = () => {
                 <p className="text-white my-2">
                     Don't have an Account? <a className="font-bold" href="/register">Register</a>
                 </p>
-                <div className="divider divider-success text-white">OR</div>
-                <p><button onClick={handelGoogleSignIn} className="w-full font-bold lg:p-4 md:p-4 p-2 bg-green-600 text-white rounded-md hover:bg-red-500">Log in with Google</button></p>
+                <p className='my-4 text-white text-center'>OR</p>
+                <p><button onClick={handelGoogleSignIn} className="w-full font-bold lg:p-4 md:p-4 p-2 bg-gray-800 text-white rounded-md hover:bg-blue-300">Log in with Google</button></p>
                 </div>
+
             </div>
-        </div>
-        </div>
+            
     );
 };
 
